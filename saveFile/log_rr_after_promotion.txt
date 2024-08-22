@@ -1,0 +1,150 @@
+Using username "ec2-user".
+Authenticating with public key "EC2Key"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Thu Aug 22 07:20:32 2024 from 49.216.199.117
+[ec2-user@ip-10-1-10-186 ~]$ sudo dnf install mariadb105
+Last metadata expiration check: 0:51:13 ago on Thu Aug 22 07:15:02 2024.
+Dependencies resolved.
+===========================================================================================================================
+ Package                               Architecture      Version                              Repository              Size
+===========================================================================================================================
+Installing:
+ mariadb105                            x86_64            3:10.5.25-1.amzn2023.0.1             amazonlinux            1.6 M
+Installing dependencies:
+ mariadb-connector-c                   x86_64            3.1.13-1.amzn2023.0.3                amazonlinux            196 k
+ mariadb-connector-c-config            noarch            3.1.13-1.amzn2023.0.3                amazonlinux            9.2 k
+ mariadb105-common                     x86_64            3:10.5.25-1.amzn2023.0.1             amazonlinux             29 k
+ perl-Sys-Hostname                     x86_64            1.23-477.amzn2023.0.6                amazonlinux             18 k
+
+Transaction Summary
+===========================================================================================================================
+Install  5 Packages
+
+Total download size: 1.8 M
+Installed size: 19 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/5): mariadb-connector-c-3.1.13-1.amzn2023.0.3.x86_64.rpm                                3.0 MB/s | 196 kB     00:00
+(2/5): mariadb-connector-c-config-3.1.13-1.amzn2023.0.3.noarch.rpm                         136 kB/s | 9.2 kB     00:00
+(3/5): mariadb105-common-10.5.25-1.amzn2023.0.1.x86_64.rpm                                 1.4 MB/s |  29 kB     00:00
+(4/5): mariadb105-10.5.25-1.amzn2023.0.1.x86_64.rpm                                         16 MB/s | 1.6 MB     00:00
+(5/5): perl-Sys-Hostname-1.23-477.amzn2023.0.6.x86_64.rpm                                  527 kB/s |  18 kB     00:00
+---------------------------------------------------------------------------------------------------------------------------
+Total                                                                                       11 MB/s | 1.8 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                   1/1
+  Installing       : mariadb-connector-c-config-3.1.13-1.amzn2023.0.3.noarch                                           1/5
+  Installing       : mariadb-connector-c-3.1.13-1.amzn2023.0.3.x86_64                                                  2/5
+  Installing       : mariadb105-common-3:10.5.25-1.amzn2023.0.1.x86_64                                                 3/5
+  Installing       : perl-Sys-Hostname-1.23-477.amzn2023.0.6.x86_64                                                    4/5
+  Installing       : mariadb105-3:10.5.25-1.amzn2023.0.1.x86_64                                                        5/5
+  Running scriptlet: mariadb105-3:10.5.25-1.amzn2023.0.1.x86_64                                                        5/5
+  Verifying        : mariadb-connector-c-3.1.13-1.amzn2023.0.3.x86_64                                                  1/5
+  Verifying        : mariadb-connector-c-config-3.1.13-1.amzn2023.0.3.noarch                                           2/5
+  Verifying        : mariadb105-3:10.5.25-1.amzn2023.0.1.x86_64                                                        3/5
+  Verifying        : mariadb105-common-3:10.5.25-1.amzn2023.0.1.x86_64                                                 4/5
+  Verifying        : perl-Sys-Hostname-1.23-477.amzn2023.0.6.x86_64                                                    5/5
+
+Installed:
+  mariadb-connector-c-3.1.13-1.amzn2023.0.3.x86_64         mariadb-connector-c-config-3.1.13-1.amzn2023.0.3.noarch
+  mariadb105-3:10.5.25-1.amzn2023.0.1.x86_64               mariadb105-common-3:10.5.25-1.amzn2023.0.1.x86_64
+  perl-Sys-Hostname-1.23-477.amzn2023.0.6.x86_64
+
+Complete!
+[ec2-user@ip-10-1-10-186 ~]$ mysql -h mysql.cluster-c7cu2e82mkka.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 459
+Server version: 8.0.32 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'db' at line 1
+MySQL [(none)]> exit
+Bye
+[ec2-user@ip-10-1-10-186 ~]$ mysql -h mysql.cluster-c7cu2e82mkka.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 506
+Server version: 8.0.32 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> SHOW  VARIABLES  like  '%slow_query_log%';
++---------------------+----------------------------------------------+
+| Variable_name       | Value                                        |
++---------------------+----------------------------------------------+
+| slow_query_log      | OFF                                          |
+| slow_query_log_file | /rdsdbdata/log/slowquery/mysql-slowquery.log |
++---------------------+----------------------------------------------+
+2 rows in set (0.006 sec)
+
+MySQL [(none)]> create database Udacity;
+Query OK, 1 row affected (0.046 sec)
+
+MySQL [(none)]> use Udacity;
+Database changed
+MySQL [Udacity]> CREATE TABLE Test (PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255));
+Query OK, 0 rows affected (0.233 sec)
+
+MySQL [Udacity]> select * from Test;
+Empty set (0.027 sec)
+
+MySQL [Udacity]> INSERT INTO Test (PersonID, LastName, FirstName, Address, City) VALUES (1, 'Yu', 'Johnali', 'TW', 'Taipei');
+Query OK, 1 row affected (0.007 sec)
+
+MySQL [Udacity]> select * from Test;
++----------+----------+-----------+---------+--------+
+| PersonID | LastName | FirstName | Address | City   |
++----------+----------+-----------+---------+--------+
+|        1 | Yu       | Johnali   | TW      | Taipei |
++----------+----------+-----------+---------+--------+
+1 row in set (0.001 sec)
+
+MySQL [Udacity]> exit
+Bye
+[ec2-user@ip-10-1-10-186 ~]$ mysql -h mysql-instance-1-us-east-1f.c7cu2e82mkka.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 574
+Server version: 8.0.32 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use Udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [Udacity]> select * from Test;
++----------+----------+-----------+---------+--------+
+| PersonID | LastName | FirstName | Address | City   |
++----------+----------+-----------+---------+--------+
+|        1 | Yu       | Johnali   | TW      | Taipei |
++----------+----------+-----------+---------+--------+
+1 row in set (0.011 sec)
+
+MySQL [Udacity]> INSERT INTO Test (PersonID, LastName, FirstName, Address, City) VALUES (1, 'Yu', 'Johnali', 'TW', 'Taipei');
+ERROR 1836 (HY000): Running in read-only mode
+MySQL [Udacity]>
+
