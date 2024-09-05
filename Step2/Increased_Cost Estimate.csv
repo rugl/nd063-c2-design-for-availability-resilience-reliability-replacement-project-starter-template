@@ -1,0 +1,65 @@
+Production Environment,Activity,,,,
+,Service,Description,Quantity,Unit Cost,Monthly Cost
+,EC2 Instances,,,,
+,- Web Servers (m5.large),In Public Subnets,4,$0.096/hour,$280.00 
+,- Application Servers (m5.xlarge),In Private Subnets,8,$0.192/hour,"$1,120.00 "
+,- Database (db.m5.xlarge),Primary DB in Private Subnet,1,$0.474/hour,$350.00 
+,- Database (db.m5.xlarge),Read Replica in AZ2,1,$0.474/hour,$350.00 
+,- Cache Nodes (r5.large),For Redis/Memcached,2,$0.096/hour,$140.00 
+,S3 Storage,Data Storage,150 TB,$0.023/GB,"$3,450.00 "
+,NAT Gateway,Data Processing,2,$0.045/hour,$65.00 
+,CloudFront Distribution,Content Delivery,1,$0.085/GB (data transfer),$250.00 
+,Load Balancer (ALB),Web Servers,2,$0.022/hour,$32.00 
+,Load Balancer (ALB),Application Servers,2,$0.022/hour,$32.00 
+,Auto Scaling,Web Servers (ASG),1,$0.10/instance/hour,$300.00 
+,Auto Scaling,Application Servers (ASG),1,$0.10/instance/hour,$600.00 
+,Elasticache (Redis),In-memory Caching,2 nodes,$0.238/hour,$350.00 
+,RDS Multi-AZ Deployment,High Availability for Databases,1,$0.682/hour,$500.00 
+,Data Transfer,Data Transfer In/Out,Variable,$0.09/GB,"$2,000.00 "
+,WAF & Shield,Enhanced Security,1,$0.60/hour,$450.00 
+,GuardDuty,Threat Detection,1,$1.00/hour,$750.00 
+,VPC Flow Logs,Network Monitoring,1,$0.05/GB,$50.00 
+,Total Monthly Cost,,,,"$11,069.00 "
+Production Environment,StandBy,,,,
+,Service,Description,Quantity,Unit Cost,Monthly Cost
+,EC2 Instances,,,,
+,- Web Servers (m5.large),In Public Subnet,2,$0.096/hour,$140.00 
+,- Application Servers (m5.large),In Private Subnet,4,$0.096/hour,$280.00 
+,- Database (db.m5.large),Primary DB in Private Subnet,1,$0.238/hour,$175.00 
+,- Cache Nodes (t3.medium),For Redis/Memcached,2,$0.0416/hour,$60.00 
+,S3 Storage,Backup Storage,150 TB,$0.023/GB,"$3,450.00 "
+,NAT Gateway,Data Processing,1,$0.045/hour,$32.00 
+,CloudFront Distribution,Content Delivery,1,$0.085/GB (data transfer),$150.00 
+,Load Balancer (ALB),Combined Usage,1,$0.022/hour,$16.00 
+,Auto Scaling,Web/Application Servers (ASG),1,$0.10/instance/hour,$150.00 
+,Data Transfer,Data Transfer In/Out,Variable,$0.09/GB,"$1,000.00 "
+,Total Monthly Cost,,,,"$5,453.00 "
+UAT,,,,,
+,Service,Description,Quantity,Unit Cost,Monthly Cost
+,EC2 Instances,,,,
+,- Web Servers (t3.medium),In Public Subnet,2,$0.0416/hour,$60.00 
+,- Application Servers (t3.medium),In Private Subnet,4,$0.0416/hour,$120.00 
+,- Database (db.t3.medium),Primary DB in Private Subnet,1,$0.067/hour,$50.00 
+,S3 Storage,UAT Storage,10 TB,$0.023/GB,$230.00 
+,NAT Gateway,Data Processing,1,$0.045/hour,$32.00 
+,CloudFront Distribution,Content Delivery,1,$0.085/GB (data transfer),$100.00 
+,Load Balancer (ALB),Combined Usage,1,$0.022/hour,$16.00 
+,Auto Scaling,Web/Application Servers (ASG),1,$0.10/instance/hour,$100.00 
+,Data Transfer,Data Transfer In/Out,Variable,$0.09/GB,$120.00 
+,Total Monthly Cost,,,,$828.00 
+SIT,,,,,
+,Service,Description,Quantity,Unit Cost,Monthly Cost
+,EC2 Instances,,,,
+,- Web Servers (t3.micro),In Public Subnet,1,$0.0104/hour,$7.00 
+,- Application Servers (t3.micro),In Private Subnet,1,$0.0104/hour,$15.00 
+,S3 Storage,SIT Storage,10 TB,$0.023/GB,$230.00 
+,NAT Gateway,Data Processing,1,$0.045/hour,$32.00 
+,CloudFront Distribution,Content Delivery,1,$0.085/GB (data transfer),$20.00 
+,Load Balancer (ALB),Combined Usage,1,$0.022/hour,$16.00 
+,Auto Scaling,Web/Application Servers (ASG),1,$0.10/instance/hour,$10.00 
+,Data Transfer,Data Transfer In/Out,Variable,$0.09/GB,$30.00 
+,Total Monthly Cost,,,,$360.00 
+,,,,,
+extra budget,,,,,10%
+Total Environment Cost,,,,,"$17,710.00 "
+Total fee,,,,,"$19,481.00 "
