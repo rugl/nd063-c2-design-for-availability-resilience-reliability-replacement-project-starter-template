@@ -1,0 +1,15 @@
+Tools for Scanning IaC, AMI/Containers, and AWS Configurations:
+Checkov (IaC Scanning)
+Checkov is a static analysis tool that scans Terraform, CloudFormation, and Kubernetes manifests for security misconfigurations.
+Example Compliance Violation: Public S3 bucket in a CloudFormation template.
+
+Amazon Inspector (AMI/Container Scanning)
+Amazon Inspector can scan AMIs or containers for OS vulnerabilities.
+Example Compliance Violation: Outdated or vulnerable package (e.g., outdated OpenSSL) in an AMI.
+
+AWS Config (Cloud Configuration Scanning)
+AWS Config monitors AWS environment configurations and detects any misconfigurations in cloud resources.
+Example Compliance Violation: Non-compliant security group rules allowing unrestricted SSH access (port 22).
+
+Checkmarx
+Securing the applications critical to enterprises’ digital transformation and business growth, from on-prem to the cloud.

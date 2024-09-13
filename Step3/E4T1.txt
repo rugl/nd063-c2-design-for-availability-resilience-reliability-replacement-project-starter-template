@@ -1,0 +1,3 @@
+1. Make sure the IP is real.
+What I mean is that you need to set the connection, data, and audit operation permissions on the machine.
+2. you need a controller outside the machine to do this, just like you need approval.

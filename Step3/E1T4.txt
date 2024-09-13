@@ -1,0 +1,7 @@
+1. S3 Bucket Access Controls:
+S3 Bucket Access Controls:
+There are two separate S3 buckets, one is free, and the other is a sensitive secret.
+There is a problem: it didn't have a private access key to protect from unauthorized access connection. Even the IAM role didn't have.
+
+2. IP security:
+Public IP and private IP must be separated. Because it's private, you can even control the IP and ports. NALC must be more strictly defined, defining only minimal usage rights like IAM.

@@ -1,0 +1,4 @@
+1. make a web sofeware that just a web site exchange data, just RESTful api web site, which will be a file wall to filter data, permission....and so on.
+2. yes.
+3. I use command line to finished, but I still can't complete S3 copy object, I didn't understand what's problem.
+I show the picture in E4T2_s3copy.jpg, can you tell me what problem when I already set up deny configure.
